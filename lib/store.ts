@@ -33,6 +33,7 @@ const removeComponent = (
 type Store = {
   formComponents: FormComponent[];
   componentToEdit: FormComponent | null;
+  reorderComponents: (newList: FormComponent[]) => void;
   setComponentToEdit: (component: FormComponent | null) => void;
   addComponent: (payload: ComponentPayload) => void;
   updateComponent: (id: string, payload: ComponentPayload) => void;
@@ -70,7 +71,13 @@ const useStore = create<Store>()(
     removeAll: () =>
       set((state) => ({
         ...state,
+        componentToEdit: null,
         formComponents: [],
+      })),
+    reorderComponents: (newList: FormComponent[]) =>
+      set((state) => ({
+        ...state,
+        formComponents: newList,
       })),
   }))
 );
