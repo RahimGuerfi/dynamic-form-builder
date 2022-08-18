@@ -14,3 +14,14 @@ export const isNameUsed = (
   checkId
     ? arr.some((item) => item.inputName === name && item.id !== id)
     : arr.some((item) => item.inputName === name);
+
+//Name validation function
+export const validateName = (
+  arr: FormComponent[],
+  checkId: boolean,
+  id?: string
+) => {
+  return function (name: string) {
+    return !isNameUsed(arr, name, checkId, id) || "Name must be unique.";
+  };
+};
