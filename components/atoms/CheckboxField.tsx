@@ -1,28 +1,34 @@
 import React from "react";
-import { FieldError } from "react-hook-form";
+import {
+  RegisterOptions,
+  useFormContext,
+  Path,
+  FieldValues,
+} from "react-hook-form";
 
-interface Props {
+interface Props<T> {
+  name: Path<T>;
+  rules?: RegisterOptions;
   label: string;
-  name: string;
-  register: any;
-  validation?: any;
-  error: FieldError | undefined;
 }
 
-export const CheckBox = ({
+export const CheckboxField = <TFieldValues extends FieldValues>({
   label,
   name,
-  register,
-  validation = {},
-  error,
-}: Props) => {
+  rules = {},
+}: Props<TFieldValues>) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<TFieldValues>();
+
   return (
     <div className="mb-4">
       <div className="flex items-start">
         <div className="flex items-center h-5">
           <input
             type="checkbox"
-            {...register(name, validation)}
+            {...register(name, rules)}
             className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
           />
         </div>
@@ -30,9 +36,9 @@ export const CheckBox = ({
           {label}
         </label>
       </div>
-      {error && (
+      {errors[name] && (
         <p className="mt-2 font-medium text-sm text-red-600 dark:text-red-500">
-          {error.message}
+          {errors[name]?.message as string}
         </p>
       )}
     </div>
