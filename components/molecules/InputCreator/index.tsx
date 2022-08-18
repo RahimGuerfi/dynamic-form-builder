@@ -7,7 +7,7 @@ import {
 } from "react-hook-form";
 import { ComponentPayload, InputTypes } from "../../../types";
 import { useStore } from "../../../lib/store";
-import { isNameUsed } from "../../../lib/helpers";
+import { validateName } from "../../../lib/helpers";
 import {
   Card,
   CardHeader,
@@ -57,15 +57,6 @@ const InputCreator = (props: Props) => {
     reset(DEFAULT_VALUES);
   };
 
-  //Name validation function
-  const validateName = (name: string) =>
-    !isNameUsed(
-      formComponents,
-      name,
-      componentToEdit != null,
-      componentToEdit?.id
-    ) || "Name must be unique.";
-
   //Watch inputType value
   const { inputType } = useWatch<ComponentPayload>({
     control,
@@ -87,7 +78,11 @@ const InputCreator = (props: Props) => {
             label="Name:"
             rules={{
               required: "Name is required.",
-              validate: validateName,
+              validate: validateName(
+                formComponents,
+                componentToEdit != null,
+                componentToEdit?.id
+              ),
             }}
           />
 
