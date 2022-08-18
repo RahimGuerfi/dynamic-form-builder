@@ -30,19 +30,25 @@ const FormLayout = (props: Props) => {
         className="mb-3"
       />
 
-      <Reorder.Group values={formComponents} onReorder={handleReorder}>
-        {formComponents.map((comp) => (
-          <Item key={comp.id} data={comp} />
-        ))}
-      </Reorder.Group>
-
-      {!isEmptyArr(formComponents) && (
-        <button
-          className="px-5 py-2.5 text-white bg-red-600 hover:bg-red-800 focus:outline-none focus:shadow-outline font-medium rounded-lg text-sm text-center float-right"
-          onClick={() => handleDeleteAll()}
-        >
-          DELETE ALL
-        </button>
+      {!isEmptyArr(formComponents) ? (
+        <>
+          <Reorder.Group values={formComponents} onReorder={handleReorder}>
+            {formComponents.map((comp) => (
+              <Item key={comp.id} data={comp} />
+            ))}
+          </Reorder.Group>
+          <button
+            className="px-5 py-2.5 text-white bg-red-600 hover:bg-red-800 focus:outline-none focus:shadow-outline font-medium rounded-lg text-sm text-center float-right"
+            onClick={() => handleDeleteAll()}
+          >
+            DELETE ALL
+          </button>
+        </>
+      ) : (
+        <TextMd
+          text="---You need to create at least one input---"
+          className="mb-3"
+        />
       )}
     </Card>
   );

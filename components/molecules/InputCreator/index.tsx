@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import {
+  useForm,
+  SubmitHandler,
+  FormProvider,
+  useWatch,
+} from "react-hook-form";
 import { ComponentPayload, InputTypes } from "../../../types";
 import { useStore } from "../../../lib/store";
 import { isNameUsed } from "../../../lib/helpers";
@@ -39,7 +44,7 @@ const InputCreator = (props: Props) => {
     shouldUnregister: true,
   });
 
-  const { handleSubmit, reset, watch } = methods;
+  const { handleSubmit, reset, control } = methods;
 
   //Submit handler
   const onSubmit: SubmitHandler<ComponentPayload> = (data) => {
@@ -52,8 +57,6 @@ const InputCreator = (props: Props) => {
     reset(DEFAULT_VALUES);
   };
 
-  const watchType = watch("inputType");
-
   //Name validation function
   const validateName = (name: string) =>
     !isNameUsed(
@@ -62,6 +65,11 @@ const InputCreator = (props: Props) => {
       componentToEdit != null,
       componentToEdit?.id
     ) || "Name must be unique.";
+
+  //Watch inputType value
+  const { inputType } = useWatch<ComponentPayload>({
+    control,
+  });
 
   return (
     <Card>
@@ -92,7 +100,7 @@ const InputCreator = (props: Props) => {
             }}
           />
 
-          {requireOptions.includes(watchType) && (
+          {inputType && requireOptions.includes(inputType) && (
             <TextField<ComponentPayload>
               name="options"
               label="Options:"

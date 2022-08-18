@@ -20,21 +20,25 @@ const Form = (props: Props) => {
 
   const { handleSubmit } = methods;
 
+  //Submit handler
   const onSubmit = (data: any) => {
     console.log(data);
     alert(JSON.stringify(data, null, 2));
   };
 
-  //Return form field component
-  const formField = (component: FormComponent): JSX.Element => {
+  //Generate and return form component
+  const generateFormComponent = (component: FormComponent): JSX.Element => {
+    //Create rules object based on isRequired variable
     const rules = component.isRequired
       ? { required: `${component.inputName} is required!` }
-      : {};
+      : { required: false };
+
+    //Generate component based on inputType
     switch (component.inputType) {
       case "textField":
         return (
           <TextField
-            key={component.inputName}
+            key={component.id}
             label={component.inputName}
             name={component.inputName}
             rules={rules}
@@ -43,7 +47,7 @@ const Form = (props: Props) => {
       case "checkBox":
         return (
           <CheckboxField
-            key={component.inputName}
+            key={component.id}
             label={component.inputName}
             name={component.inputName}
             rules={rules}
@@ -52,7 +56,7 @@ const Form = (props: Props) => {
       case "select":
         return (
           <SelectField
-            key={component.inputName}
+            key={component.id}
             label={component.inputName}
             name={component.inputName}
             rules={rules}
@@ -62,7 +66,7 @@ const Form = (props: Props) => {
       case "radio":
         return (
           <RadioGroup
-            key={component.inputName}
+            key={component.id}
             label={component.inputName}
             name={component.inputName}
             rules={rules}
@@ -73,15 +77,19 @@ const Form = (props: Props) => {
   };
 
   const { formComponents } = useStore();
+
   return (
     <Card>
       <CardHeader text="Dynamic Form" />
 
       <TextMd text="Your dynamic form goes here." className="mb-3" />
-      {!isEmptyArr(formComponents) && (
+
+      {!isEmptyArr(formComponents) ? (
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {formComponents.map((component) => formField(component))}
+            {formComponents.map((component) =>
+              generateFormComponent(component)
+            )}
 
             <button
               type="submit"
@@ -91,6 +99,11 @@ const Form = (props: Props) => {
             </button>
           </form>
         </FormProvider>
+      ) : (
+        <TextMd
+          text="---You need to create at least one input---"
+          className="mb-3"
+        />
       )}
     </Card>
   );
