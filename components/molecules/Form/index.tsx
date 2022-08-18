@@ -83,7 +83,8 @@ const Form = (props: Props) => {
       <CardHeader text="Dynamic Form" />
 
       <TextMd text="Your dynamic form goes here." className="mb-3" />
-      {!isEmptyArr(formComponents) && (
+
+      {!isEmptyArr(formComponents) ? (
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)}>
             {formComponents.map((component) =>
@@ -98,6 +99,11 @@ const Form = (props: Props) => {
             </button>
           </form>
         </FormProvider>
+      ) : (
+        <TextMd
+          text="---You need to create at least one input---"
+          className="mb-3"
+        />
       )}
     </Card>
   );
