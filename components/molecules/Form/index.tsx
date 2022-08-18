@@ -1,17 +1,9 @@
 import React from "react";
 import { useStore } from "../../../lib/store";
-import {
-  Card,
-  CardHeader,
-  TextMd,
-  TextField,
-  SelectField,
-  CheckboxField,
-  RadioGroup,
-} from "../../atoms";
+import { Card, CardHeader, TextMd } from "../../atoms";
 import { useForm, FormProvider } from "react-hook-form";
-import { FormComponent } from "../../../types";
 import { isEmptyArr } from "../../../lib/helpers";
+import { FormComp } from "./FormComp";
 
 interface Props {}
 
@@ -26,56 +18,6 @@ const Form = (props: Props) => {
     alert(JSON.stringify(data, null, 2));
   };
 
-  //Generate and return form component
-  const generateFormComponent = (component: FormComponent): JSX.Element => {
-    //Create rules object based on isRequired variable
-    const rules = component.isRequired
-      ? { required: `${component.inputName} is required!` }
-      : { required: false };
-
-    //Generate component based on inputType
-    switch (component.inputType) {
-      case "textField":
-        return (
-          <TextField
-            key={component.id}
-            label={component.inputName}
-            name={component.inputName}
-            rules={rules}
-          />
-        );
-      case "checkBox":
-        return (
-          <CheckboxField
-            key={component.id}
-            label={component.inputName}
-            name={component.inputName}
-            rules={rules}
-          />
-        );
-      case "select":
-        return (
-          <SelectField
-            key={component.id}
-            label={component.inputName}
-            name={component.inputName}
-            rules={rules}
-            values={component.options.split(";")}
-          />
-        );
-      case "radio":
-        return (
-          <RadioGroup
-            key={component.id}
-            label={component.inputName}
-            name={component.inputName}
-            rules={rules}
-            values={component.options.split(";")}
-          />
-        );
-    }
-  };
-
   const { formComponents } = useStore();
 
   return (
@@ -87,9 +29,9 @@ const Form = (props: Props) => {
       {!isEmptyArr(formComponents) ? (
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {formComponents.map((component) =>
-              generateFormComponent(component)
-            )}
+            {formComponents.map((component) => (
+              <FormComp key={component.id} component={component} />
+            ))}
 
             <button
               type="submit"
