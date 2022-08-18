@@ -2,7 +2,7 @@ export type ComponentPayload = {
   inputName: string;
   inputType: InputTypes;
   isRequired: boolean;
-  options?: string;
+  options: string;
 };
 
 export type FormComponent = {

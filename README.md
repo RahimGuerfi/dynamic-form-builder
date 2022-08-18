@@ -1,34 +1,95 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Project Preview](preview.gif)
 
-## Getting Started
+# Table of Content
 
-First, run the development server:
+- [Table of Content](#table-of-content)
+  - [1. Project Structure](#1-project-structure)
+  - [2. Libraries & Frameworks](#2-libraries--frameworks)
+  - [3. Installation & Set Up](#3-installation--set-up)
+  - [4. License](#4-license)
+
+## 1. Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
+├── components
+│   ├── atoms                  #Frequently used components
+│   │   ├── CardHeader.tsx
+│   │   ├── Card.tsx
+│   │   ├── CheckboxField.tsx
+│   │   ├── index.ts
+│   │   ├── RadioGroup.tsx
+│   │   ├── SelectField.tsx
+│   │   ├── TextField.tsx
+│   │   └── TextMd.tsx
+│   └── molecules              #Components composed of more than one atom
+│       ├── Form
+│       │   └── index.tsx
+│       ├── FormLayout
+│       │   ├── index.tsx
+│       │   └── Item.tsx
+│       └── InputCreator
+│           └── index.tsx
+├── lib                        #Store and helpers functions
+│   ├── helpers.ts
+│   └── store.ts
+├── next.config.js
+├── next-env.d.ts
+├── package.json
+├── package-lock.json
+├── pages
+│   ├── _app.tsx
+│   └── index.tsx
+├── postcss.config.js
+├── preview.gif
+├── public
+│   └── favicon.ico
+├── README.md
+├── styles
+│   └── globals.css
+├── tailwind.config.js
+├── tsconfig.json
+└── types                      #TypeScript types
+    └── index.ts
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 2. Libraries & Frameworks
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+| Name                                                      | Description                                                            |
+| --------------------------------------------------------- | ---------------------------------------------------------------------- |
+| [NextJS](https://nextjs.org/)                             | The React Framework for Production.                                    |
+| [React Hook Form](https://react-hook-form.com/)           | Performant, flexible and extensible forms with easy-to-use validation. |
+| [Zustand](https://zustand-demo.pmnd.rs/)                  | A small, fast and scalable bearbones state-management solution         |
+| [React Icons](https://react-icons.github.io/react-icons/) | Include popular icons in your React projects easily                    |
+| [Framer Motion](https://framer.com/motion)                | Open source, production-ready animation and gesture library for React  |
+| [uuid](https://github.com/uuidjs/uuid)                    | Generate random Universally unique identifier (UUID)                   |
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 3. Installation & Set Up
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Install project dependencies
 
-## Learn More
+```bash
+  yarn install or npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+2. Start the development server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  yarn dev or npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Build for production
 
-## Deploy on Vercel
+```bash
+  yarn build or npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Run production mode
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+  yarn start or npm start
+```
+
+## 4. License
+
+MIT © [Rahim Guerfi](https://github.com/RahimGuerfi)
