@@ -99,6 +99,7 @@ const InputCreator = (props: Props) => {
             <TextField<ComponentPayload>
               name="options"
               label="Options:"
+              placeHolder="Enter options separate by ; (option1;option2;option3...)"
               rules={{
                 required: "Options is required.",
               }}
