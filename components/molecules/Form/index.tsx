@@ -56,7 +56,7 @@ const Form = (props: Props) => {
             label={component.inputName}
             name={component.inputName}
             rules={rules}
-            values={component.options?.split(";")}
+            values={component.options.split(";")}
           />
         );
       case "radio":
@@ -66,7 +66,7 @@ const Form = (props: Props) => {
             label={component.inputName}
             name={component.inputName}
             rules={rules}
-            values={component.options?.split(";")}
+            values={component.options.split(";")}
           />
         );
     }
