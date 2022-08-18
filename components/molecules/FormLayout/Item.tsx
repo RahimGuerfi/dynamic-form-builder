@@ -1,9 +1,9 @@
 import React from "react";
-import { useStore } from "../../lib/store";
-import { FormComponent } from "../../types";
+import { useStore } from "../../../lib/store";
+import { FormComponent } from "../../../types";
 import { Reorder } from "framer-motion";
 import { TbEditOff, TbEdit, TbTrash, TbGripVertical } from "react-icons/tb";
-import { TextMd } from "../Atoms";
+import { TextMd } from "../../atoms";
 
 interface Props {
   data: FormComponent;

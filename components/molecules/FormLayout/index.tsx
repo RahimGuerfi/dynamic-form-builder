@@ -1,10 +1,10 @@
 import React from "react";
-import { useStore } from "../../lib/store";
+import { useStore } from "../../../lib/store";
 import Item from "./Item";
-import { isEmptyArr } from "../../lib/helpers";
-import { FormComponent } from "../../types";
+import { isEmptyArr } from "../../../lib/helpers";
+import { FormComponent } from "../../../types";
 import { Reorder } from "framer-motion";
-import { Card, CardHeader, TextMd } from "../Atoms";
+import { Card, CardHeader, TextMd } from "../../atoms";
 
 interface Props {}
 
