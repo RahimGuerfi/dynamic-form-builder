@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStore } from "../../../lib/store";
 import { Card, CardHeader, TextMd } from "../../atoms";
 import { useForm, FormProvider } from "react-hook-form";
@@ -10,7 +10,7 @@ interface Props {}
 const Form = (props: Props) => {
   const methods = useForm({ shouldUnregister: true });
 
-  const { handleSubmit } = methods;
+  const { handleSubmit, reset } = methods;
 
   //Submit handler
   const onSubmit = (data: any) => {
@@ -20,9 +20,15 @@ const Form = (props: Props) => {
 
   const { formComponents } = useStore();
 
+  //Reset form state whenever formComponents state changes
+  useEffect(() => {
+    reset();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formComponents]);
+
   return (
     <Card>
-      <CardHeader text="Dynamic Form" />
+      <CardHeader text="3. Dynamic Form" />
 
       <TextMd text="Your dynamic form goes here." className="mb-3" />
 

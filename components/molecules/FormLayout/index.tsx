@@ -23,7 +23,7 @@ const FormLayout = (props: Props) => {
 
   return (
     <Card>
-      <CardHeader text="Form layout" />
+      <CardHeader text="2. Form layout" />
 
       <TextMd
         text="This allows you to edit, remove and reorder form fields."

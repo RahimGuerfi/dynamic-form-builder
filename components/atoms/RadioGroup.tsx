@@ -30,9 +30,9 @@ export const RadioGroup = <TFieldValues extends FieldValues>({
           type="radio"
           value={value}
           {...register(name, rules)}
-          className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
+          className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
         />
-        <label className="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+        <label className="block ml-2 text-sm font-medium text-gray-900">
           {value}
         </label>
       </div>
@@ -46,7 +46,7 @@ export const RadioGroup = <TFieldValues extends FieldValues>({
 
   return (
     <div className="mb-4">
-      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+      <label className="block mb-2 text-sm font-medium text-gray-900">
         {label}
       </label>
 
@@ -55,7 +55,7 @@ export const RadioGroup = <TFieldValues extends FieldValues>({
       ))}
 
       {errors[name] && (
-        <p className="font-medium text-sm text-red-600 dark:text-red-500">
+        <p className="font-medium text-sm text-red-600">
           {errors[name]?.message as string}
         </p>
       )}
