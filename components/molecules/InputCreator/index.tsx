@@ -64,7 +64,7 @@ const InputCreator = (props: Props) => {
 
   return (
     <Card>
-      <CardHeader text="Input Creator" />
+      <CardHeader text="1. Input Creator" />
 
       <TextMd
         text="This form allows you to create and update inputs."
